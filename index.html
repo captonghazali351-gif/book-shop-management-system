@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BookShop Management System</title>
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <i class="fa-solid fa-book-open"></i>
+            <span>BookShop</span>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="#dashboard" class="nav-link active" data-page="dashboard">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="#books" class="nav-link" data-page="books">
+                <i class="fa-solid fa-book"></i>
+                <span>Books</span>
+            </a>
+
+            <a href="#sales" class="nav-link" data-page="sales">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>Sales</span>
+            </a>
+
+            <a href="#customers" class="nav-link" data-page="customers">
+                <i class="fa-solid fa-users"></i>
+                <span>Customers</span>
+            </a>
+
+            <a href="#reports" class="nav-link" data-page="reports">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Reports</span>
+            </a>
+
+            <a href="#settings" class="nav-link" data-page="settings">
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="admin-mini" id="adminInfo" role="button" tabindex="0">
+
+                <div class="admin-avatar">
+                    A
+                </div>
+
+                <div>
+                    <strong>Admin</strong>
+                    <small>Administrator</small>
+                </div>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button class="mobile-menu" id="mobileMenu" type="button">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+                <div>
+                    <h1 id="pageTitle">Dashboard</h1>
+                    <p id="pageSubtitle">Overview of your book shop</p>
+                </div>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <button
+                    class="notification-btn"
+                    id="notificationBtn"
+                    type="button"
+                >
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="notification-dot"></span>
+                </button>
+
+                <div class="profile">
+
+                    <div class="profile-avatar">
+                        A
+                    </div>
+
+                    <div class="profile-info">
+                        <strong>Admin</strong>
+                        <span>Administrator</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= PAGE CONTAINER ================= -->
+        <div class="page-container">
+
+
+            <!-- ================= DASHBOARD ================= -->
+            <section class="page active" id="dashboard">
+
+                <div class="page-header">
+
+                    <div>
+                        <h2>Dashboard</h2>
+                        <p>Here's what's happening in your book shop.</p>
+                    </div>
+
+                </div>
+
+
+                <!-- STAT CARDS -->
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon blue">
+                            <i class="fa-solid fa-book"></i>
+                        </div>
+
+                        <div class="stat-content">
+                            <span>Total Books</span>
+                            <h3 id="totalBooks">0</h3>
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon green">
+                            <i class="fa-solid fa-boxes-stacked"></i>
+                        </div>
+
+                        <div class="stat-content">
+                            <span>Total Stock</span>
+                            <h3 id="totalStock">0</h3>
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon orange">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </div>
+
+                        <div class="stat-content">
+                            <span>Today's Sales</span>
+                            <h3 id="todaySales">0</h3>
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon purple">
+                            <i class="fa-solid fa-money-bill-wave"></i>
+                        </div>
+
+                        <div class="stat-content">
+                            <span>Today's Revenue</span>
+                            <h3 id="todayRevenue">Rs. 0</h3>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DASHBOARD GRID -->
+                <div class="dashboard-grid">
+
+                    <!-- RECENT SALES -->
+                    <div class="card">
+
+                        <div class="card-header">
+
+                            <div>
+                                <h3>Recent Sales</h3>
+                                <p>Latest transactions</p>
+                            </div>
+
+                            <button class="text-btn" data-page="sales" type="button">
+                                View All
+                            </button>
+
+                        </div>
+
+
+                        <div class="table-wrapper">
+
+                            <table>
+
+                                <thead>
+                                    <tr>
+                                        <th>Book</th>
+                                        <th>Customer</th>
+                                        <th>Qty</th>
+                                        <th>Total</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="recentSalesTable">
+
+                                    <tr>
+                                        <td colspan="5" class="empty-state">
+                                            No sales yet
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- LOW STOCK -->
+                    <div class="card">
+
+                        <div class="card-header">
+
+                            <div>
+                                <h3>Low Stock</h3>
+                                <p>Books that need restocking</p>
+                            </div>
+
+                        </div>
+
+                        <div class="low-stock-list" id="lowStockList">
+
+                            <div class="empty-state">
+                                No low-stock books
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= BOOKS ================= -->
+            <section class="page" id="books">
+
+                <div class="page-header">
+
+                    <div>
+                        <h2>Books</h2>
+                        <p>Manage your book inventory.</p>
+                    </div>
+
+                    <button class="primary-btn" id="addBookBtn" type="button">
+                        <i class="fa-solid fa-plus"></i>
+                        Add Book
+                    </button>
+
+                </div>
+
+
+                <!-- TOOLBAR -->
+                <div class="toolbar">
+
+                    <div class="search-box">
+
+                        <i class="fa-solid fa-search"></i>
+
+                        <input
+                            type="text"
+                            id="bookSearch"
+                            placeholder="Search books..."
+                        >
+
+                    </div>
+
+
+                    <select id="categoryFilter" class="filter-select">
+                        <option value="all">All Categories</option>
+                    </select>
+
+                </div>
+
+
+                <!-- BOOK TABLE -->
+                <div class="card">
+
+                    <div class="table-wrapper">
+
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>Book</th>
+                                    <th>Author</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Stock</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="booksTable">
+
+                                <tr>
+                                    <td colspan="7" class="empty-state">
+                                        No books found
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= SALES ================= -->
+            <section class="page" id="sales">
+
+                <div class="page-header">
+
+                    <div>
+                        <h2>Sales</h2>
+                        <p>Manage your shop transactions.</p>
+                    </div>
+
+                    <button class="primary-btn" id="newSaleBtn" type="button">
+                        <i class="fa-solid fa-plus"></i>
+                        New Sale
+                    </button>
+
+                </div>
+
+
+                <!-- SALES MINI STATS -->
+                <div class="mini-stats">
+
+                    <div class="mini-stat">
+                        <span>Total Transactions</span>
+                        <strong id="totalTransactions">0</strong>
+                    </div>
+
+                    <div class="mini-stat">
+                        <span>Total Revenue</span>
+                        <strong id="totalRevenue">Rs. 0</strong>
+                    </div>
+
+                    <div class="mini-stat">
+                        <span>Books Sold</span>
+                        <strong id="booksSold">0</strong>
+                    </div>
+
+                </div>
+
+
+                <!-- SALES TABLE -->
+                <div class="card">
+
+                    <div class="table-wrapper">
+
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>Book</th>
+                                    <th>Customer</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="salesTable">
+
+                                <tr>
+                                    <td colspan="5" class="empty-state">
+                                        No sales found
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= CUSTOMERS ================= -->
+            <section class="page" id="customers">
+
+                <div class="page-header">
+
+                    <div>
+                        <h2>Customers</h2>
+                        <p>Manage your customers.</p>
+                    </div>
+
+                    <button class="primary-btn" id="addCustomerBtn" type="button">
+                        <i class="fa-solid fa-user-plus"></i>
+                        Add Customer
+                    </button>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="table-wrapper">
+
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+                                    <th>Total Purchases</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="customersTable">
+
+                                <tr>
+                                    <td colspan="5" class="empty-state">
+                                        No customers found
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= REPORTS ================= -->
+            <section class="page" id="reports">
+
+                <div class="page-header">
+
+                    <div>
+                        <h2>Reports</h2>
+                        <p>View your shop performance.</p>
+                    </div>
+
+                </div>
+
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon purple">
+                            <i class="fa-solid fa-money-bill-wave"></i>
+                        </div>
+
+                        <div class="stat-content">
+                            <span>Today's Revenue</span>
+                            <h3 id="reportTodayRevenue">Rs. 0</h3>
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon green">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+
+                        <div class="stat-content">
+                            <span>Total Revenue</span>
+                            <h3 id="reportTotalRevenue">Rs. 0</h3>
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon orange">
+                            <i class="fa-solid fa-book"></i>
+                        </div>
+
+                        <div class="stat-content">
+                            <span>Books Sold</span>
+                            <h3 id="reportBooksSold">0</h3>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card report-card">
+
+                    <div class="card-header">
+
+                        <div>
+                            <h3>Sales Summary</h3>
+                            <p>Overview of your sales activity</p>
+                        </div>
+
+                    </div>
+
+                    <div id="reportContent" class="report-content">
+
+                        <div class="empty-state">
+                            No report data available
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= SETTINGS ================= -->
+            <section class="page" id="settings">
+
+                <div class="page-header">
+
+                    <div>
+                        <h2>Settings</h2>
+                        <p>Manage your shop information.</p>
+                    </div>
+
+                </div>
+
+
+                <div class="card settings-card">
+
+                    <div class="card-header">
+
+                        <div>
+                            <h3>Shop Information</h3>
+                            <p>Update your basic shop details.</p>
+                        </div>
+
+                    </div>
+
+
+                    <form id="settingsForm">
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+
+                                <label for="shopName">
+                                    Shop Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="shopName"
+                                    placeholder="Enter shop name"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="shopPhone">
+                                    Phone
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="shopPhone"
+                                    placeholder="Enter phone number"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group full">
+
+                                <label for="shopAddress">
+                                    Address
+                                </label>
+
+                                <textarea
+                                    id="shopAddress"
+                                    rows="4"
+                                    placeholder="Enter shop address"
+                                ></textarea>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-actions">
+
+                            <button type="submit" class="primary-btn">
+                                <i class="fa-solid fa-save"></i>
+                                Save Settings
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- ================= BOOK MODAL ================= -->
+<div class="modal" id="bookModal">
+
+    <div class="modal-overlay"></div>
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <div>
+                <h3 id="bookModalTitle">Add Book</h3>
+                <p>Add or update book information.</p>
+            </div>
+
+            <button class="close-modal" data-modal="bookModal" type="button">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <form id="bookForm">
+
+            <input type="hidden" id="bookId">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label for="bookTitle">
+                        Book Title
+                    </label>
+
+                    <input
+                        type="text"
+                        id="bookTitle"
+                        required
+                        placeholder="Enter book title"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="bookAuthor">
+                        Author
+                    </label>
+
+                    <input
+                        type="text"
+                        id="bookAuthor"
+                        required
+                        placeholder="Enter author name"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="bookCategory">
+                        Category
+                    </label>
+
+                    <input
+                        type="text"
+                        id="bookCategory"
+                        required
+                        placeholder="e.g. Programming"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="bookPrice">
+                        Price
+                    </label>
+
+                    <input
+                        type="number"
+                        id="bookPrice"
+                        min="0"
+                        required
+                        placeholder="Enter price"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="bookStock">
+                        Stock
+                    </label>
+
+                    <input
+                        type="number"
+                        id="bookStock"
+                        min="0"
+                        required
+                        placeholder="Enter stock"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button
+                    type="button"
+                    class="secondary-btn close-modal"
+                    data-modal="bookModal"
+                >
+                    Cancel
+                </button>
+
+                <button type="submit" class="primary-btn">
+                    <i class="fa-solid fa-save"></i>
+                    Save Book
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- ================= SALE MODAL ================= -->
+<div class="modal" id="saleModal">
+
+    <div class="modal-overlay"></div>
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <div>
+                <h3>New Sale</h3>
+                <p>Create a new book sale.</p>
+            </div>
+
+            <button class="close-modal" data-modal="saleModal" type="button">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <form id="saleForm">
+
+            <div class="form-grid">
+
+                <div class="form-group full">
+
+                    <label for="saleBook">
+                        Book
+                    </label>
+
+                    <select id="saleBook" required>
+
+                        <option value="">
+                            Select a book
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label for="saleCustomer">
+                        Customer
+                    </label>
+
+                    <select id="saleCustomer">
+
+                        <option value="">
+                            Walk-in Customer
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="saleQuantity">
+                        Quantity
+                    </label>
+
+                    <input
+                        type="number"
+                        id="saleQuantity"
+                        min="1"
+                        value="1"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="sale-total-box">
+
+                    <span>Total</span>
+
+                    <strong id="saleTotal">
+                        Rs. 0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button
+                    type="button"
+                    class="secondary-btn close-modal"
+                    data-modal="saleModal"
+                >
+                    Cancel
+                </button>
+
+                <button type="submit" class="primary-btn">
+                    <i class="fa-solid fa-check"></i>
+                    Complete Sale
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- ================= CUSTOMER MODAL ================= -->
+<div class="modal" id="customerModal">
+
+    <div class="modal-overlay"></div>
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <div>
+                <h3>Add Customer</h3>
+                <p>Add customer information.</p>
+            </div>
+
+            <button class="close-modal" data-modal="customerModal" type="button">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <form id="customerForm">
+
+            <input type="hidden" id="customerId">
+
+            <div class="form-grid">
+
+                <div class="form-group full">
+
+                    <label for="customerName">
+                        Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="customerName"
+                        required
+                        placeholder="Enter customer name"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="customerPhone">
+                        Phone
+                    </label>
+
+                    <input
+                        type="text"
+                        id="customerPhone"
+                        placeholder="Enter phone number"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="customerEmail">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="customerEmail"
+                        placeholder="Enter email"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button
+                    type="button"
+                    class="secondary-btn close-modal"
+                    data-modal="customerModal"
+                >
+                    Cancel
+                </button>
+
+                <button type="submit" class="primary-btn">
+                    <i class="fa-solid fa-save"></i>
+                    Save Customer
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- ================= ADMIN PANEL MODAL ================= -->
+<div class="modal" id="adminModal">
+
+    <div class="modal-overlay"></div>
+
+    <div class="modal-content admin-modal">
+
+        <div class="modal-header">
+
+            <div>
+                <h3>Admin Panel</h3>
+                <p>Manage your admin account and shop information.</p>
+            </div>
+
+            <button
+                class="close-modal"
+                data-modal="adminModal"
+                type="button"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <div class="admin-panel-content">
+
+
+            <!-- ADMIN PROFILE -->
+            <div class="admin-section">
+
+                <h4>
+                    <i class="fa-solid fa-user"></i>
+                    Admin Profile
+                </h4>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="adminName">
+                            Admin Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="adminName"
+                            value="Admin"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="adminEmail">
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="adminEmail"
+                            placeholder="admin@example.com"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="adminPhone">
+                            Phone
+                        </label>
+
+                        <input
+                            type="text"
+                            id="adminPhone"
+                            placeholder="03001234567"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="primary-btn"
+                    id="saveAdminProfile"
+                >
+                    <i class="fa-solid fa-save"></i>
+                    Save Profile
+                </button>
+
+            </div>
+
+
+            <!-- PASSWORD -->
+            <div class="admin-section">
+
+                <h4>
+                    <i class="fa-solid fa-lock"></i>
+                    Password
+                </h4>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="currentPassword">
+                            Current Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="currentPassword"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="newPassword">
+                            New Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="newPassword"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="confirmPassword">
+                            Confirm Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="primary-btn"
+                    id="changePasswordBtn"
+                >
+                    <i class="fa-solid fa-key"></i>
+                    Change Password
+                </button>
+
+            </div>
+
+
+            <!-- SHOP INFORMATION -->
+            <div class="admin-section">
+
+                <h4>
+                    <i class="fa-solid fa-store"></i>
+                    Shop Information
+                </h4>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="adminShopName">
+                            Shop Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="adminShopName"
+                            placeholder="Enter shop name"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="adminShopPhone">
+                            Shop Phone
+                        </label>
+
+                        <input
+                            type="text"
+                            id="adminShopPhone"
+                            placeholder="Enter phone number"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label for="adminShopAddress">
+                            Shop Address
+                        </label>
+
+                        <textarea
+                            id="adminShopAddress"
+                            rows="3"
+                            placeholder="Enter shop address"
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="primary-btn"
+                    id="saveAdminShop"
+                >
+                    <i class="fa-solid fa-save"></i>
+                    Save Shop Information
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= TOAST ================= -->
+<div class="toast" id="toast">
+
+    <div class="toast-icon">
+        <i class="fa-solid fa-check"></i>
+    </div>
+
+    <div>
+        <strong>Success</strong>
+        <p id="toastMessage">Operation completed.</p>
+    </div>
+
+</div>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+<script src="script.js"></script>
+
+</body>
+</html>
