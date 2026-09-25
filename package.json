@@ -1,0 +1,24 @@
+{
+  "name": "book-management-system",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/captonghazali351-gif/book-shop-management-system.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/captonghazali351-gif/book-shop-management-system/issues"
+  },
+  "homepage": "https://github.com/captonghazali351-gif/book-shop-management-system#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
